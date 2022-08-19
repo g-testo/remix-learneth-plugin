@@ -218,6 +218,7 @@ export class StepViewComponent implements OnInit {
   }
 
   async next() {
+    console.log("************ Trigger!!!", localStorage);
     try {
       this.store.update({
         loading: true,
