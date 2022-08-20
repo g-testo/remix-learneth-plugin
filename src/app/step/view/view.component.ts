@@ -217,8 +217,10 @@ export class StepViewComponent implements OnInit {
     return step.name.replace(/_/g, ' ')
   }
 
-  async next() {
-    console.log("************ Trigger!!!", localStorage);
+  async next(isLastStep?: boolean) {
+    if(isLastStep){
+        console.log("CodeTrack api call", location, this.store);
+    }
     try {
       this.store.update({
         loading: true,
