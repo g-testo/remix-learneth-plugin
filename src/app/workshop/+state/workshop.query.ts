@@ -31,6 +31,10 @@ export class WorkshopQuery extends QueryEntity<WorkshopState> {
 
   steps$ = this.selectActive().pipe(map(workshop => workshop.steps))
 
+  getCurrentWorkshop(){
+    return this.getActive();
+  }
+
   setUIDescriptionIsOpen(id: ID) {
     this.store.ui.upsert(id, entity => ({ isOpen: !entity.isOpen }))
   }

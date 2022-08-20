@@ -19,35 +19,30 @@ export class RemixClient extends PluginClient {
   constructor() {
    
     super();
-    console.log("remix client created");
+    // console.log("remix client created");
     this.methods = ["startTutorial","addRepository"];
     //this.options.allowOrigins = null;
     this.options.devMode = null
     const client = createClient(this);
     
-    console.log(this.options);
     //listenOnThemeChanged(this);
     client.onload().then(()=>{
-      console.log("client loaded",this)
-
-      const testFile = `
-      
-      `;
-
-
-      
+        const testFile = ``;
+        console.log("()()()()()()()", client.call('settings', 'getGithubAccessToken'));
     })}
+
+    // async onWorkshopComplete(repoName, branch){
+    //     const token = await 
+    //     console.log("&&&&&&&", this);
+    // }
     startTutorial(repoName,branch,id):void{
-       console.log("start tutorial", repoName, branch, id)
+    //    console.log("start tutorial", repoName, branch, id)
        this._startTutorialAction.next({name:repoName,branch:branch,id:id})    
     } 
     addRepository(repoName, branch){
-      console.log("add repo", repoName, branch);
+    //   console.log("add repo", repoName, branch);
       this._loadRepoAction.next({name:repoName,branch:branch,id:""})
     }
-
-
-
 
 }
 

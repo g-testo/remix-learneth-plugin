@@ -39,7 +39,7 @@ export interface GithubUIState extends EntityState<GithubUI> {}
 export class GitHubStore extends EntityStore<GitHubState> {
   ui: EntityUIStore<GithubUIState, GithubUI>
   constructor() {
-    console.log(initialState)
+    // console.log(initialState)
     super(initialState)
     this.createUIStore(entity => ({ isOpen: true }))
   }

@@ -65,7 +65,7 @@ export class ListComponent implements OnInit {
     this.workshops$ = this.query.selectAll()
 
     this.subscription = this.workshops$.subscribe(workshops => {
-      console.log(workshops)
+    //   console.log(workshops)
     })
 
     this.plugintesterservice.errors.subscribe((e)=>{

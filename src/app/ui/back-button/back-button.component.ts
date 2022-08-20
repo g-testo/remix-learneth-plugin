@@ -60,13 +60,13 @@ export class BackButtonComponent implements OnInit {
     const ref:NgbModalRef = this._modalService.open(NgbdModalConfirm)
     ref.result.then((data) => {
       // on close
-      console.log("close",data, this.link)
+    //   console.log("close",data, this.link)
       if(data == "ok"){
         this.router.navigate([this.link])
       }
     }, (reason) => {
       // on dismiss
-      console.log("dismiss",reason)
+    //   console.log("dismiss",reason)
     });
   }
 
@@ -90,9 +90,9 @@ export class BackButtonComponent implements OnInit {
       if (!this.stepQuery.getActive().test && !isLast) {
         this.stepService.next()
       }
-      console.log('go to', path, this.stepQuery.getCount(), isLast, current)
+    //   console.log('go to', path, this.stepQuery.getCount(), isLast, current)
       this.stepService.loaded = false;
-      console.log(this.router.url)
+    //   console.log(this.router.url)
       this.stepService.setStatus("refresh")
       await this.router.navigate(path, { relativeTo: this.route })
     } catch (err) {

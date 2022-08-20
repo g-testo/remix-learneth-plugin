@@ -54,7 +54,7 @@ export class ImporterComponent implements OnInit {
       .subscribe(gh => (typeof gh == 'undefined' ? this.resetall() : false))
 
     if(this.workshopquery.getCount() == 0){
-      console.log("nothing is loaded. Getting first repo");
+    //   console.log("nothing is loaded. Getting first repo");
       this.resetall();
     }
 
@@ -69,14 +69,14 @@ export class ImporterComponent implements OnInit {
 
   }
   sync() {
-    console.log('submit')
+    // console.log('submit')
 
     //this.importservice.import(this.model)
     this.importservice.loadcontent(this.model)
   }
 
   selectfirst() {
-    console.log("select first")
+    // console.log("select first")
     this.githubquery
       .selectFirst()
       .subscribe(gh => {
@@ -111,7 +111,7 @@ export class ImporterComponent implements OnInit {
   }
 
   selectrepo(repo: github) {
-    console.log('select repo')
+    // console.log('select repo')
     this.importservice.loadcontent(repo)
   }
 
@@ -138,7 +138,7 @@ export class ImporterComponent implements OnInit {
   }
 
   onChangeName(newValue: string) {
-    console.log(newValue)
+    // console.log(newValue)
     if (newValue.includes('https://')) {
       this.toastr.warning(
         'Github name should be username/reponame',

@@ -26,7 +26,7 @@ export class GitHubQuery extends QueryEntity<GitHubState> {
   }
 
   setUIIsOpen(id: ID) {
-    console.log('set open', id)
+    // console.log('set open', id)
     this.store.ui.upsert(id, entity => ({ isOpen: !entity.isOpen }))
   }
 

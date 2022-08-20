@@ -70,6 +70,10 @@ export class StepService {
     private _modalService: NgbModal
   ) {}
 
+  async getWorkshopData(){
+    return this.workshopQuery.getCurrentWorkshop();
+  }
+
   async get(index: number, step: Step) {
 
     this.store.setLoading(true)
@@ -157,7 +161,7 @@ export class StepService {
   async askPermissions(path: string) {
     let result = 'ok'
     if(await this.remix.call('fileManager', 'exists' as any, path)){
-      console.log('exist')
+    //   console.log('exist')
       const ref:NgbModalRef = this._modalService.open(NgbdModalConfirm)
       ref.componentInstance.fileName = path
       try {
@@ -175,7 +179,7 @@ export class StepService {
 
     // Get content from account or step
     const workshop = this.workshopQuery.getActive()
-    console.log('loading ', step, workshop)
+    // console.log('loading ', step, workshop)
     let content: string
     let path: string
     if (step.solidity.file) {
@@ -239,7 +243,7 @@ export class StepService {
         await this.remix.call('fileManager', 'switchFile', `${path}`)
       }
 
-      console.log('testing ', step.test.content)
+    //   console.log('testing ', step.test.content)
 
       path = getFilePath(step.test.file)
       path = `.learneth/${workshop.name}/${step.name}/${path}`
@@ -254,7 +258,7 @@ export class StepService {
         'testFromPath',
         path
       )
-      console.log('result ', result)
+    //   console.log('result ', result)
       this.spinner.hide()
 
 
@@ -292,7 +296,7 @@ export class StepService {
 
   async showAnswer(step: Step) {
     try {
-      console.log('loading ', step)
+    //   console.log('loading ', step)
       let content: string
       let path: string
       if (step.answer.file) {

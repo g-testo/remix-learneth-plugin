@@ -67,10 +67,10 @@ export class StepViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("on init step")
+    // console.log("on init step", this);
     this.errorLoadingFile = false
     this.service.loaded = false
-    console.log('all ', this.query.getAll())
+    // console.log('all ', this.query.getAll())
     this.toastr.clear()
     this.canTest().then((x)=>{
       this.canRunTest = x
@@ -89,7 +89,7 @@ export class StepViewComponent implements OnInit {
     )
     this.success$ = this.query.select('success')
     this.query.select('success').subscribe((r) => {
-      console.log('succes?', r)
+    //   console.log('succes?', r)
       if (typeof this.topDiv != 'undefined') {
         let divToScrollTo: ElementRef = this.topDiv
 
@@ -102,7 +102,7 @@ export class StepViewComponent implements OnInit {
           }, 500);
         }
         try {
-          console.log(divToScrollTo.nativeElement)
+        //   console.log(divToScrollTo.nativeElement)
           divToScrollTo.nativeElement.scrollIntoView()
         } catch (e) {
           console.log(e)
@@ -113,11 +113,13 @@ export class StepViewComponent implements OnInit {
     this.isLoading$ = this.query.selectLoading()
     this.index$ = this.query.selectActiveId()
     this.service.getStatus().subscribe((e) => {
-      console.log("service status ", e)
+    //   console.log("service status ", e)
       if (e == "refresh") this.checkScroll()
     })
     this.errors$.subscribe((errors) => {
-      console.log("errors", errors)
+        if(errors){
+            console.log("errors", errors)
+        }
       if (typeof this.topDiv != 'undefined') {
         let divToScrollTo: ElementRef = this.topDiv
 
@@ -131,7 +133,7 @@ export class StepViewComponent implements OnInit {
               }, 500);
             }
         try {
-          console.log(divToScrollTo.nativeElement)
+        //   console.log(divToScrollTo.nativeElement)
           divToScrollTo.nativeElement.scrollIntoView()
         } catch (e) {
           console.log(e)
@@ -153,7 +155,7 @@ export class StepViewComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    console.log("view init")
+    // console.log("view init")
   }
   ngAfterViewChecked() {
 
@@ -218,9 +220,16 @@ export class StepViewComponent implements OnInit {
   }
 
   async next(isLastStep?: boolean) {
+    let activeWorkshop = await this.service.getWorkshopData();
+
     if(isLastStep){
-        console.log("CodeTrack api call", location, this.store);
+        console.log("CodeTrack api call. Data: ",{
+            problemCompleted: activeWorkshop.metadata.data.id,
+            userId: 0
+        });
     }
+    console.log(this);
+
     try {
       this.store.update({
         loading: true,
@@ -233,7 +242,7 @@ export class StepViewComponent implements OnInit {
       if (!this.query.getActive().test && !isLast) {
         this.service.next()
       }
-      console.log('go to', path, this.query.getCount(), isLast, current)
+    //   console.log('go to', path, this.query.getCount(), isLast, current)
       this.service.loaded = false
       this.service.setStatus("refresh")
       await this.router.navigate(path, {
