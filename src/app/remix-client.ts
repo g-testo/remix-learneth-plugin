@@ -28,13 +28,8 @@ export class RemixClient extends PluginClient {
     //listenOnThemeChanged(this);
     client.onload().then(()=>{
         const testFile = ``;
-        console.log("()()()()()()()", client.call('settings', 'getGithubAccessToken'));
     })}
 
-    // async onWorkshopComplete(repoName, branch){
-    //     const token = await 
-    //     console.log("&&&&&&&", this);
-    // }
     startTutorial(repoName,branch,id):void{
     //    console.log("start tutorial", repoName, branch, id)
        this._startTutorialAction.next({name:repoName,branch:branch,id:id})    

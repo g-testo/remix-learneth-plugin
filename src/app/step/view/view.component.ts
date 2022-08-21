@@ -220,15 +220,9 @@ export class StepViewComponent implements OnInit {
   }
 
   async next(isLastStep?: boolean) {
-    let activeWorkshop = await this.service.getWorkshopData();
-
     if(isLastStep){
-        console.log("CodeTrack api call. Data: ",{
-            problemCompleted: activeWorkshop.metadata.data.id,
-            userId: 0
-        });
+        this.service.onCompletedAssignment();
     }
-    console.log(this);
 
     try {
       this.store.update({

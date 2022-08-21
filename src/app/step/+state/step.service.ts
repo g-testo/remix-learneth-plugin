@@ -36,6 +36,8 @@ import {
   StepStore
 } from './step.store'
 
+import axios from 'axios'
+
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -69,10 +71,6 @@ export class StepService {
     private toastr: ToastrService, //  private toaster: NotificationStore
     private _modalService: NgbModal
   ) {}
-
-  async getWorkshopData(){
-    return this.workshopQuery.getCurrentWorkshop();
-  }
 
   async get(index: number, step: Step) {
 
@@ -363,5 +361,22 @@ export class StepService {
 
   public setStatus(n: string) {
     this.status.next(n)
+  }
+
+  async onCompletedAssignment(){
+    let url = "http://pursuit.localhost:9000/platforms/assignment-completed";
+    let activeWorkshop = await this.workshopQuery.getCurrentWorkshop();
+    // @ts-ignore
+    let codeTrackId = await this.remix.call('settings', "getCodeTrackUserId");
+    let res = await axios.post(url, {
+        userId: Number(codeTrackId),
+        problemCompleted: activeWorkshop.metadata.data.id
+    },{
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    console.log(res);
   }
 }
