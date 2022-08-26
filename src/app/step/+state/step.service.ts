@@ -365,18 +365,18 @@ export class StepService {
 
   async onCompletedAssignment(){
     let url = "http://pursuit.localhost:9000/platforms/assignment-completed";
-    let activeWorkshop = await this.workshopQuery.getCurrentWorkshop();
+    // @ts-ignore
+    let { repo, metadata } = await this.workshopQuery.getCurrentWorkshop();
     // @ts-ignore
     let codeTrackId = await this.remix.call('settings', "getCodeTrackUserId");
     let res = await axios.post(url, {
         userId: Number(codeTrackId),
-        problemCompleted: activeWorkshop.metadata.data.id
+        problemUrl: `${repo.name}//${repo.branch}//${metadata.data.id}`
     },{
         headers: {
             'Content-Type': 'application/json'
         }
     });
-
     console.log(res);
   }
 }
