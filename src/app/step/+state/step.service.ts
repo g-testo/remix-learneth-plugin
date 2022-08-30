@@ -365,7 +365,7 @@ export class StepService {
 
   async onCompletedAssignment(){
     
-    let url = "https://web3.gregorytesto.com/platforms/assignment-completed";
+    let url = "https://staging-codetrack.herokuapp.com/platforms/assignment-completed";
     // @ts-ignore
     let { repo, metadata } = await this.workshopQuery.getCurrentWorkshop();
     // @ts-ignore
