@@ -219,8 +219,9 @@ export class StepViewComponent implements OnInit {
     return step.name.replace(/_/g, ' ')
   }
 
-  async next(isLastStep?: boolean) {
-    if(isLastStep){
+  async next(stepId?: number) {
+    if(this.isLast(stepId)){
+        console.log("Last step");
         this.service.onCompletedAssignment();
     }
 

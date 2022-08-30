@@ -65,7 +65,7 @@
       <ng-container *ngIf="!(isLoading$ | async) && !errorLoadingFile && !canRunTest">
         <button
           class="nav-item rounded-0 nav-link btn btn-success test"
-          (click)="next()"
+          (click)="next(step.id)"
         >
          Next
         </button>
@@ -82,7 +82,7 @@
     <button
       class="w-100 rounded-0 nav-item nav-link btn btn-success"
       *ngIf="success$ | async"
-      (click)="next()"
+      (click)="next(step.id)"
     >
       Next
     </button>
@@ -151,14 +151,14 @@
     <button
       *ngIf="!isLast(step.id)"
       class="w-100 btn btn-success"
-      (click)="next()"
+      (click)="next(step.id)"
     >
       Next
     </button>
     <button
       *ngIf="isLast(step.id)"
       class="w-100 btn btn-success"
-      (click)="next(true)"
+      (click)="next(step.id)"
     >
       Finish tutorial
     </button>
